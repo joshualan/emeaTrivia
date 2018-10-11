@@ -231,6 +231,39 @@ export class QuizComponent implements OnInit, OnDestroy {
         choices_2: 'Rotterdam, Netherlands',
         choices_3: 'Bedford, MA',
         choices_4: 'Manila, Philippines'
+      },
+      {
+        question: 'What branch of the military purchased Progress Software products amounting to $6M?',
+        answer: 'Coast Guard',
+        choices_1: 'Army',
+        choices_2: 'Marines',
+        choices_3: 'Navy',
+        choices_4: 'Coast Guard'
+      },
+      {
+        question: 'Rollbase was recognized by Gartner as a:',
+        answer: '2013 Cool Vendor in PaaS',
+        choices_1: '2014 Most Promising Startup',
+        choices_2: '2013 Cool Vendor in PaaS',
+        choices_3: 'Time Person of the Year',
+        choices_4: '2012 Hippest SaaS'
+      },
+      {
+        question: 'Progress has approximately how many employees?',
+        answer: '1500',
+        choices_1: '1750',
+        choices_2: '2000',
+        choices_3: '1500',
+        choices_4: '8'
+      },
+      ,
+      {
+        question: 'What is Progress\'s current strategy?',
+        answer: 'Cognitive First',
+        choices_1: 'Customers Foremost',
+        choices_2: 'Cognitive First',
+        choices_3: 'Data Direct',
+        choices_4: 'Acquire Now, Ask Later'
       }
     ];
   }
