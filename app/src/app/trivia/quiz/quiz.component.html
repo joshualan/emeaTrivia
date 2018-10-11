@@ -1,0 +1,132 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-9">
+      <h1 class="main-heading">
+        Time Left: {{ timeLeft }}
+      </h1>
+    </div>
+    <div class="col-md-3" align="right">
+      <h1 class="main-heading">Score: {{ score }} </h1>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <mat-progress-bar color="accent" mode="determinate" [value]="timeLeft * 5">
+      </mat-progress-bar>
+    </div>
+    <br>
+  </div>
+
+  <div class="row align-items-end" *ngIf="qState === 'init' || qState === 'submit'">
+    <div class="col-md-12 col-lg-12">
+      <mat-card>
+        <div *ngIf="qState === 'init'">
+          <mat-card-content align="center">
+            <p>
+              Answer as many questions as you can in 20 seconds!
+            </p>
+          </mat-card-content>
+          <mat-divider></mat-divider>
+          <mat-card-actions align="center">
+            <button (click)="startQuiz()" class="col-md-6" color="primary" mat-raised-button>
+              Start
+            </button>
+          </mat-card-actions>
+        </div>
+
+        <div *ngIf="qState === 'submit'" align="center">
+          <mat-card-content>
+            <p>
+              Your score was:
+            </p>
+            <h1>
+              <b>{{ score }}</b>
+            </h1>
+            <p *ngIf="hasScores">
+              Enter your name to submit this score!
+            </p>
+            <p *ngIf="!hasScores">
+              Thanks for playing!
+            </p>
+          </mat-card-content>
+
+          <form [formGroup]="submitForm" *ngIf="hasScores">
+            <mat-form-field>
+              <input #name matInput placeholder="Name" name="name" formControlName="name">
+              <mat-error *ngIf="submitForm.controls.name.invalid">Please enter a name</mat-error>
+            </mat-form-field>
+          </form>
+
+          <mat-divider></mat-divider>
+          <mat-card-actions>
+            <div class="container">
+              <div class="row choice">
+                <div class="col-md-6">
+                  <button (click)="submitScore()" [disabled]="submitText !== 'Submit' || !hasScores" class="col-md-12"
+                    color="primary" mat-raised-button>
+                    <div [innerHtml]="submitText"></div>
+                  </button>
+                </div>
+                <div class="col-md-6">
+                  <button (click)="startQuiz()" class="col-md-12" color="accent" mat-raised-button>
+                    Retry
+                  </button>
+                </div>
+              </div>
+            </div>
+          </mat-card-actions>
+        </div>
+      </mat-card>
+    </div>
+  </div>
+
+
+  <div class="row align-items-end" *ngIf="qState === 'quiz'">
+    <div class="col-md-12 col-lg-12" [ngClass]="routeAnimationsElements" [@questionAnimation]="cState"
+      (@questionAnimation.done)="animationDone($event)">
+      <mat-card>
+        <mat-card-content>
+          <p>
+            {{selectedQuestion.question}}
+          </p>
+        </mat-card-content>
+        <mat-divider></mat-divider>
+        <mat-card-actions>
+          <div class="container">
+            <div class="row choice">
+              <div class="col-md-6">
+                <button (click)="toggle($event, 0)" class="col-md-12" [color]="choiceColors[0]" mat-stroked-button>
+                  <div [innerHtml]="choices[0]"></div>
+                </button>
+              </div>
+              <div class="col-md-6">
+                <button (click)="toggle($event, 1)" class="col-md-12" [color]="choiceColors[1]" mat-stroked-button>
+                  <div [innerHtml]="choices[1]"></div>
+                </button>
+              </div>
+            </div>
+            <div class="row choice">
+              <div class="col-md-6">
+                <button (click)="toggle($event, 2)" class="col-md-12" [color]="choiceColors[2]" mat-stroked-button>
+                  <div [innerHtml]="choices[2]"></div>
+                </button>
+              </div>
+              <div class="col-md-6">
+                <button (click)="toggle($event, 3)" class="col-md-12" [color]="choiceColors[3]" mat-stroked-button>
+                  <div [innerHtml]="choices[3]"></div>
+                </button>
+              </div>
+            </div>
+          </div>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+
+  <div *ngIf="qState === 'quiz'" align="center">
+    <button (click)="pause()" class="col-md-6 pause" color="primary" mat-raised-button>
+      Pause
+    </button>
+  </div>
+</div>

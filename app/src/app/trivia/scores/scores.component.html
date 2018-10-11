@@ -1,0 +1,37 @@
+<div class="container">
+  <div class="row">
+
+    
+    <div class="col-md-12 main-heading">
+      <h1>
+        High Scores
+        <button (click)="refreshScores()" mat-fab style="font-size:24px"><i class="fas fa-sync"></i></button>
+      </h1>
+    </div>
+  </div>
+  <div class="row align-items-end">
+    <div class="col-md-12 col-lg-12"> 
+      <mat-card *ngFor="let score of scores" [ngClass]="routeAnimationsElements">
+        <mat-card-content>
+          <div class="row">
+            <div class="col-md-4 vertical-align">
+              <h2>
+                {{score.name}}
+              </h2>
+            </div>
+            <div class="col-md-2 vertical-align">
+              <h2>
+                  {{score.score}}
+              </h2>
+            </div>
+            <div class="col-md-6 vertical-align">
+              <h3>
+                {{score.comment}}
+              </h3>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>

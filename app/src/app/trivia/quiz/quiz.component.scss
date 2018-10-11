@@ -1,0 +1,48 @@
+@import '../../../styles-variables';
+
+.container {
+  margin-top: 20px;
+}
+
+.main-heading {
+  text-transform: uppercase;
+  margin: 0 0 20px 0;
+}
+
+.choice {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.mat-progress-bar {
+  height: 2em;
+  margin-bottom: 10px;
+}
+
+mat-card {
+  margin: 0 0 20px 0;
+
+  mat-card-title {
+    position: relative;
+  }
+
+  mat-card-content {
+    // text-align: center;
+    font-size: 1.5em;
+  }
+
+  button {
+    font-size: 1em;
+    padding: 20px 20px 20px 20px;
+  }
+
+  mat-card-actions > .container {
+    margin-top: 0px;
+  }
+
+  mat-form-field {
+    text-align: center;
+    padding-bottom: 1em;
+    font-size: 1.5em;
+  }
+}
